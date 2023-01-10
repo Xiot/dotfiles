@@ -1,8 +1,7 @@
 
 # Get directory of script - https://stackoverflow.com/questions/59895/how-do-i-get-the-directory-where-a-bash-script-is-located-from-within-the-script
-# SCRIPT_DIR=`greadlink -f ${BASH_SOURCE[0]} || readlink -f ${BASH_SOURCE[0]}`
-# SCRIPT_DIR=`dirname $SCRIPT_DIR`
 DOTFILE_ROOT=$(cd "$(dirname "$0")"; pwd)
+ZSHRC=`realpath ${ZROOTDIR:-~}"/.zshrc"`
 
 COMMENT_TAG="# xiot.dotfile install"
 SEPERATOR="# --------------------"
@@ -21,7 +20,6 @@ then
   git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
 
-ZSHRC=`realpath ${ZROOTDIR:-~}"/.zshrc"`
 
 # Include link to files
 if ! grep -q "$COMMENT_TAG" "$ZSHRC" ; then
