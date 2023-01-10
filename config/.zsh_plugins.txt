@@ -1,0 +1,11 @@
+
+git
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+buonomo/yarn-completions
+
+arzzen/calc.plugin.zsh  # https://github.com/arzzen/calc.plugin.zsh
+
+# Theme
+romkatv/powerlevel10k
