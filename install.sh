@@ -1,17 +1,19 @@
 
 # Get directory of script - https://stackoverflow.com/questions/59895/how-do-i-get-the-directory-where-a-bash-script-is-located-from-within-the-script
-DOTFILE_ROOT=$(cd "$(dirname "$0")"; pwd)
-ZSHRC=`realpath ${ZROOTDIR:-~}"/.zshrc"`
+export DOTFILE_ROOT=$(cd "$(dirname "$0")"; pwd)
+ZSHRC=`realpath ${ZROOTDIR:-~}/.zshrc`
 
 COMMENT_TAG="# xiot.dotfile install"
 SEPERATOR="# --------------------"
 NEW_LINE="\n"
 
-IS_FORCE="0"
-if [[ "$1" == "--force" ]]; then
- IS_FORCE="1"
+if [ `uname` == "Darwin" ]; then
+  export IS_OSX=1
 fi
 
+if [[ "$1" == "--force" ]]; then
+ export IS_FORCE=1
+fi
 
 # install antidote (https://getantidote.github.io/)
 if [ ! -d ${ZDOTDIR:-~}"/.antidote" ]
@@ -24,15 +26,17 @@ fi
 # Include link to files
 if ! grep -q "$COMMENT_TAG" "$ZSHRC" ; then
 
+  __contents=`node $DOTFILE_ROOT/scripts/resolve.js $DOTFILE_ROOT/config/template.zsh`  
+
   echo "Adding link to personal.zsh"  
   
   echo "" >> "$ZSHRC"
   echo $COMMENT_TAG >> "$ZSHRC"  
   echo $SEPERATOR >> "$ZSHRC"
-  echo "source \"$DOTFILE_ROOT/config/personal.zsh\"" >> "$ZSHRC"
-  echo "source ${ZDOTDIR:-~}/.antidote/antidote.zsh" >> "$ZSHRC"
+  
+  printf "%s" "$__contents" >> "$ZSHRC"
+  echo "" >> "$ZSHRC"
 
-  echo "antidote load"
   echo $SEPERATOR >> "$ZSHRC"
 
 fi
@@ -41,6 +45,13 @@ fi
 if [ ! -f "$HOME/.zsh_plugins.txt" ]; then
   ln "$DOTFILE_ROOT/config/.zsh_plugins.txt" $HOME/.zsh_plugins.txt
 fi
+
+if [ ! -f "$HOME/.p10k.zsh" ]; then
+  ln "$DOTFILE_ROOT/config/.p10k.zsh" "$HOME/.p10k.zsh"
+fi
+
+# Install dependencies
+$DOTFILE_ROOT/install-deps.sh
 
 # Install node_modules for scripts
 if [ ! -d "$DOTFILE_ROOT/scripts/node_modules" ]; then
