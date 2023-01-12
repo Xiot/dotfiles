@@ -22,6 +22,8 @@ then
   git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
 
+# Install dependencies
+$DOTFILE_ROOT/install-deps.sh
 
 # Include link to files
 if ! grep -q "$COMMENT_TAG" "$ZSHRC" ; then
@@ -49,9 +51,6 @@ fi
 if [ ! -f "$HOME/.p10k.zsh" ]; then
   ln "$DOTFILE_ROOT/config/.p10k.zsh" "$HOME/.p10k.zsh"
 fi
-
-# Install dependencies
-$DOTFILE_ROOT/install-deps.sh
 
 # Install node_modules for scripts
 if [ ! -d "$DOTFILE_ROOT/scripts/node_modules" ]; then
