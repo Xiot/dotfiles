@@ -17,6 +17,7 @@ export DOCKER_HOST='unix:///Users/chris/.local/share/containers/podman/machine/p
 
 # Plugin environment variables
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
+HISTORY_SUBSTRING_SEARCH_PREFIXED=true
 
 # EXAMPLES
 # These are refrerences on how to accomplish certian tasks
