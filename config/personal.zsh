@@ -3,6 +3,8 @@ CONFIG_DIR=$(cd "$(dirname "$0")"; pwd)
 DOTFILES_ROOT=`dirname "$CONFIG_DIR"`
 
 export EDITOR="code --wait"
+
+alias ll="ls -al --color"
 alias ports="sudo lsof -PiTCP -sTCP:LISTEN"
 alias ts="node $DOTFILES_ROOT/scripts/ts.js"
 
@@ -10,6 +12,11 @@ alias ts="node $DOTFILES_ROOT/scripts/ts.js"
 function jjq {
     jq -R -r "${1:-.} as \$line | try fromjson catch \$line"
 }
+
+export DOCKER_HOST='unix:///Users/chris/.local/share/containers/podman/machine/podman-machine-default/podman.sock'
+
+# Plugin environment variables
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 
 # EXAMPLES
 # These are refrerences on how to accomplish certian tasks

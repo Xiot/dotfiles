@@ -5,3 +5,5 @@ source "$HOME/.antidote/antidote.zsh"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 antidote load
+
+source "$DOTFILE_ROOT/config/pos-install.zsh"
