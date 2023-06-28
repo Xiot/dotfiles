@@ -15,7 +15,7 @@ function jjq {
     jq -R -r "${1:-.} as \$line | try fromjson catch \$line"
 }
 
-export DOCKER_HOST='unix:///Users/chris/.local/share/containers/podman/machine/podman-machine-default/podman.sock'
+# export DOCKER_HOST='unix:///Users/chris/.local/share/containers/podman/machine/podman-machine-default/podman.sock'
 
 autoload -U compinit && compinit
 
