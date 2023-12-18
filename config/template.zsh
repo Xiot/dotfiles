@@ -6,4 +6,4 @@ source "$HOME/.antidote/antidote.zsh"
 
 antidote load
 
-source "$DOTFILE_ROOT/config/pos-install.zsh"
+source "$DOTFILE_ROOT/config/post-install.zsh"

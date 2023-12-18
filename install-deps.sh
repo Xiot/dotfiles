@@ -11,7 +11,7 @@ if [ ! `command -v volta` ]; then
 fi
 
 # install node if needed
-node --version 2>/dev/null || $HOME/.volta/bin/volta install node@16
+node --version 2>/dev/null || $HOME/.volta/bin/volta install node@20
 
 if [ IS_OSX ]; then
 
